@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="form2">
+        <form method="POST" class="form-a form-b" action="/properties/create">
+            {% csrf_token %}
+            <h3>Create a new property</h3>
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">City</label>
+                        <select class="form-control form-control-lg form-control-a" name="city" id="city" required>
+                            <option value="ramallah">Ramallah</option>
+                            <option value="nablus">Nablus</option>
+                            <option value="jenin">Jenin</option>
+                            <option value="jericho">Jericho</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Area (Meters Square)</label>
+                        <input type="number" class="form-control form-control-lg form-control-a" placeholder="Area" name="area" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Bed Rooms</label>
+                        <input type="number" class="form-control form-control-lg form-control-a" placeholder="Bed Rooms" name="beds" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Baths</label>
+                        <input type="number" class="form-control form-control-lg form-control-a" placeholder="Baths" name="baths" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Garages</label>
+                        <input type="number" class="form-control form-control-lg form-control-a" placeholder="Garages" name="garages" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Stories</label>
+                        <input type="number" class="form-control form-control-lg form-control-a" placeholder="Stories" name="stories" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Prefered Currency</label>
+                        <select name="currency" id="currency">
+                            <option value="jod">JOD</option>
+                            <option value="usd">$ USD</option>
+                            <option value="nis">₪ NIS</option>
+                        </select>
+                        <label for="Type">Price</label>
+                        <input type="number" class="form-control form-control-lg form-control-a" placeholder="Price" name="price" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <input type="radio" id="sale" value="sale" name="rent" required>
+                        <label for="html">Sale</label><br>
+                        <input type="radio" id="rent" value="rent" name="rent" required>
+                        <label for="css">Rent</label><br>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-b">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

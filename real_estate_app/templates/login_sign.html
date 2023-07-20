@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="form2">
+        <form method="POST" class="form-a form-b" action="/register">
+            {% csrf_token %}
+            <h3>Create a new account</h3>
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">First Name</label>
+                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="First Name" name="fname" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Last Name</label>
+                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Last Name" name="lname" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Email</label>
+                        <input type="email" class="form-control form-control-lg form-control-a" placeholder="Email" name="email" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Phone Number</label>
+                        <input type="number" class="form-control form-control-lg form-control-a" placeholder="Phone Number" name="phone_number" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Password</label>
+                        <input type="password" class="form-control form-control-lg form-control-a" placeholder="Password" name="pass" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Confirm Password</label>
+                        <input type="password" class="form-control form-control-lg form-control-a" placeholder="Confirm Password" name="passconfirm" required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-b">Sign Up</button>
+                </div>
+            </div>
+        </form>
+        <form method="POST" class="form-a form-b" action="/login">
+            {% csrf_token %}
+            <h3>Already have an account?</h3>
+            <div class="row">
+                <div class="col-md-12 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Email</label>
+                        <input type="email" class="form-control form-control-lg form-control-a" placeholder="Email" name="email" required>
+                    </div>
+                </div>
+                <div class="col-md-12 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Password</label>
+                        <input type="password" class="form-control form-control-lg form-control-a" placeholder="Password" name="password" required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-b">LogIn</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
