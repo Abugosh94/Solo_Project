@@ -63,7 +63,7 @@ $(document).ready(function () {
         propertiesContainer.empty();
 
         // Loop through the sorted properties and update the HTML
-
+        console.log(data.page)
         data.forEach(function (property) {
             var propertyDiv = $("<div>").addClass("col-md-4 properties");
             var cardBox = $("<div>").addClass("card-box-a card-shadow");
@@ -123,5 +123,6 @@ $(document).ready(function () {
             // Append the property div to the properties container
             propertiesContainer.append(propertyDiv);
         });
+        
     }
 });

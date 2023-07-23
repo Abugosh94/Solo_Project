@@ -38,6 +38,9 @@ def sort_properties(request):
         sorted_properties = Estate.objects.order_by('-price')
     else:
         sorted_properties = Estate.objects.filter(rent = False)
+    p = Paginator(sorted_properties, 6)
+    page = request.GET.get('page')
+    sorted_properties = p.get_page(page)
     sorted_properties_data = []
     for property in sorted_properties:
         # Prepare the property data in a dictionary format
