@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.views.generic import View
+from django.core import serializers
 from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 import bcrypt
 from real_estate_app.models import *
 
@@ -23,6 +24,38 @@ def get(request):
             return JsonResponse({'text': text}, status = 200)
     return render(request, 'property-single.html')
 
+def sort_properties(request):
+    print(request.GET.get('sort_id'))
+    if int(request.GET.get('sort_id'))== 0:
+        sorted_properties = Estate.objects.all()
+    elif int(request.GET.get('sort_id'))== 1:
+        sorted_properties = Estate.objects.order_by('-created_at')
+    elif int(request.GET.get('sort_id'))== 2:
+        sorted_properties = Estate.objects.filter(rent = True)
+    elif int(request.GET.get('sort_id'))== 4:
+        sorted_properties = Estate.objects.order_by('price')
+    elif int(request.GET.get('sort_id'))== 5:
+        sorted_properties = Estate.objects.order_by('-price')
+    else:
+        sorted_properties = Estate.objects.filter(rent = False)
+    sorted_properties_data = []
+    for property in sorted_properties:
+        # Prepare the property data in a dictionary format
+        property_data = {
+            'id': property.id,
+            'city': property.city,
+            'rent': property.rent,
+            'currency': property.currency,
+            'price': format(property.price, "3,d"),
+            'area': property.area,
+            'beds': property.beds,
+            'baths': property.baths,
+            'garages': property.garages,
+        }
+        sorted_properties_data.append(property_data)
+    return JsonResponse(sorted_properties_data, safe=False)
+
+
 def index(request):
     if "status" in request.session:
         if request.session["status"] == "Logged In":
@@ -34,7 +67,7 @@ def index(request):
 
 
 def properties(request):
-    properties = Estate.objects.all().order_by('-created_at')
+    properties = Estate.objects.all()
     p = Paginator(properties, 6)
     page = request.GET.get('page')
     properties = p.get_page(page)
